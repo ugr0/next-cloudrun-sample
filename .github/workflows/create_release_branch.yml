@@ -35,5 +35,5 @@ jobs:
           GIT_PR_RELEASE_BRANCH_PRODUCTION: main
           GIT_PR_RELEASE_BRANCH_STAGING: ${{ env.RELEASE_BRANCH_NAME }}
           GIT_PR_RELEASE_LABELS: release
-          # GIT_PR_RELEASE_TEMPLATE: pr-release.template.erb
+          GIT_PR_RELEASE_TEMPLATE: pr-release.template.erb
           TZ: Asia/Tokyo
