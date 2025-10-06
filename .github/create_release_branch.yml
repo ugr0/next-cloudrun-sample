@@ -4,8 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: '作成するバージョンを入力してください'
+        description: '作成するバージョンを入力してください (例: 1.2.3)'
         required: true
+      base:
+        description: 'リリース元のブランチまたはコミットSHAを指定 (例: develop, main, abc1234)'
+        required: false
+        default: 'develop'
 
 jobs:
   create_pr:
@@ -14,9 +18,13 @@ jobs:
       # githubのコンソールから入力したリリース名を環境変数へ保存
       RELEASE_BRANCH_NAME: release/${{ github.event.inputs.version }}
     steps:
-      - name: Checkout repository
+      - name: Checkout base branch or commit
         uses: actions/checkout@v3
-      - uses: actions/setup-ruby@v1
+        with:
+          ref: ${{ github.event.inputs.base }}
+
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
         with:
           ruby-version: 3.1
       # releaseブランチを作成
