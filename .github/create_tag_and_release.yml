@@ -2,6 +2,8 @@ name: Create Tag and Release
 
 on:
   pull_request:
+    branches:
+      - main
     types:
       - closed
 
