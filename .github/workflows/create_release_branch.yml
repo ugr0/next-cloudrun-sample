@@ -6,10 +6,6 @@ on:
       version:
         description: '作成するバージョンを入力してください (例: 1.2.3)'
         required: true
-      base:
-        description: 'リリース元のブランチまたはコミットSHAを指定 (例: develop, main, abc1234)'
-        required: false
-        default: 'develop'
 
 jobs:
   create_pr:
@@ -20,8 +16,6 @@ jobs:
     steps:
       - name: Checkout base branch or commit
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.inputs.base }}
 
       - name: Set up Ruby
         uses: actions/setup-ruby@v1
