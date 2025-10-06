@@ -16,7 +16,7 @@ jobs:
       - name: Create a tag string
         id: extract_tag
         #  Pull Requstのタイトルからバージョンを抽出する
-        run: echo "::set-output name=custom_tag::$(echo '${{ github.event.pull_request.head.ref }}' | sed 's/release\///')"
+        run: echo "custom_tag=$(echo '${{ github.event.pull_request.head.ref }}' | sed 's#^release/##')" >> $GITHUB_OUTPUT
         shell: bash
       - name: Create a tag
         id: tag_version
