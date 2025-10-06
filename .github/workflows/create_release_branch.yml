@@ -15,12 +15,12 @@ jobs:
       RELEASE_BRANCH_NAME: release/${{ github.event.inputs.version }}
     steps:
       - name: Checkout base branch or commit
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Set up Ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 3.1
+          ruby-version: 3.4
       # releaseブランチを作成
       - name: Create and push release branch
         run: |
