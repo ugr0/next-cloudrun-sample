@@ -23,7 +23,6 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.1
         with:
           custom_tag: ${{ steps.extract_tag.outputs.custom_tag }}
-          # tag_prefix: 
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
