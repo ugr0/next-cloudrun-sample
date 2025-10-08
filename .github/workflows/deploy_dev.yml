@@ -39,6 +39,6 @@ jobs:
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
-          service: '$SERVICE_NAME'
+          service: 'dev-token-cms'
           region: 'asia-northeast1'
           image: 'asia-northeast1-docker.pkg.dev/intro-436009/dev-token-cms-repo/app:latest'
