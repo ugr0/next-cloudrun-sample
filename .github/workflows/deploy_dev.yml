@@ -1,0 +1,44 @@
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Google Auth
+        id: auth
+        uses: 'google-github-actions/auth@v3'
+        with:
+          project_id: '$PROJECT_ID'
+          workload_identity_provider: 'projects/${{ secrets.GCP_PROJECT_NUMBER }}/locations/global/workloadIdentityPools/github-pool/providers/github'
+          token_format: 'access_token'
+          service_account: 'github-actions@intro-436009.iam.gserviceaccount.com'
+      - name: Docker Auth
+        id: docker-auth
+        uses: 'docker/login-action@v3'
+        with:
+          username: 'oauth2accesstoken'
+          password: '${{ steps.auth.outputs.access_token }}'
+          registry: 'asia-northeast1-docker.pkg.dev'
+      - name: Build, tag and push container
+        id: build-image
+        uses: docker/build-push-action@v6
+        with:
+          context: './src/' # アプリケーションのソースコードが配置されているディレクトリ
+          push: true
+          tags: |
+              asia-northeast1-docker.pkg.dev/intro-436009/dev-token-cms-repo/app:${{ github.sha }}
+              asia-northeast1-docker.pkg.dev/intro-436009/dev-token-cms-repo/app:latest
+      - id: 'deploy'
+        uses: 'google-github-actions/deploy-cloudrun@v2'
+        with:
+          service: '$SERVICE_NAME'
+          region: 'asia-northeast1'
+          image: 'asia-northeast1-docker.pkg.dev/intro-436009/dev-token-cms-repo/app:latest'
