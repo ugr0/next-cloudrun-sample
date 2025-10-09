@@ -42,7 +42,7 @@ module "github_actions" {
     "attribute.actor"   = "assertion.actor"
     "attribute.repository" = "assertion.repository"
   }
-  attribute_condition                     = "attribute.repository_owner=='${var.github_owner}'"
+  attribute_condition                     = "assertion.repository_owner=='${var.github_owner}'"
 
   github_owner = var.github_owner
   github_repo  = var.github_repo
