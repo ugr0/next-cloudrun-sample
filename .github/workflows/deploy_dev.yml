@@ -40,7 +40,7 @@ jobs:
       - id: 'deploy'
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
-          service: 'dev-token-cms'
+          service: '${{ vars.GCP_CLOUDRUN_SERVICE_NAME }}'
           region: 'asia-northeast1'
           image: 'asia-northeast1-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/${{ vars.GCP_ARTIFACT_REPO }}/app:latest'
       - name: Show Cloud Run URL
