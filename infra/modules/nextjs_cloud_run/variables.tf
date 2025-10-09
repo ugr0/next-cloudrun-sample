@@ -18,8 +18,3 @@ variable "image" {
 variable "environment" {
   type = string
 }
-
-variable "github_actions_service_account_email" {
-  type        = string
-  description = "Service Account email for GitHub Actions (Workload Identity Federation)"
-}

@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "token-cms-tfstate-bucket"
-    prefix = "token-cms-dev"
+    bucket = "dev-aeon-token-cms-tfstate"
+    prefix = "dev-token-cms"
   }
 }
