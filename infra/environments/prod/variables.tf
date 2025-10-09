@@ -23,7 +23,27 @@ variable "environment" {
   type        = string
 }
 
-variable "github_actions_service_account_email" {
-  description = "Service account email used by GitHub Actions"
+variable "github_owner" {
+  description = "GitHub owner/org"
+  type        = string
+}
+
+variable "github_repo" {
+  description = "GitHub repository name"
+  type        = string
+}
+
+variable "github_service_account_id" {
+  description = "Service account id (account_id) to create for GitHub Actions (renamed)"
+  type        = string
+}
+
+variable "workload_identity_pool_id" {
+  description = "Workload Identity Pool id"
+  type        = string
+}
+
+variable "workload_identity_pool_provider_id" {
+  description = "Workload Identity Pool Provider id"
   type        = string
 }

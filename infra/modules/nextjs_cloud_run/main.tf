@@ -48,10 +48,3 @@ resource "google_cloud_run_service_iam_member" "public" {
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
-
-# GitHub Actions（Workload Identity Federation経由）にデプロイ権限付与
-resource "google_project_iam_member" "github_actions_deploy" {
-  project = var.project_id
-  role    = "roles/run.admin"
-  member  = "serviceAccount:${var.github_actions_service_account_email}"
-}
