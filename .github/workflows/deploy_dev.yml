@@ -43,3 +43,5 @@ jobs:
           service: 'dev-token-cms'
           region: 'asia-northeast1'
           image: 'asia-northeast1-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/${{ vars.GCP_ARTIFACT_REPO }}/app:latest'
+      - name: Show Cloud Run URL
+        run: echo "✅ Deployed to ${{ steps.deploy.outputs.url }}"
