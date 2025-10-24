@@ -1,10 +1,11 @@
-import { Button } from "@/components/ui/button";
+"use client";
+
+import LogButton from "@/components/log-button";
 
 export default function Home() {
   return (
     <div>
-      <Button>Click me</Button>
-      <Button>Click me</Button>
+      <LogButton />
     </div>
   );
 }
